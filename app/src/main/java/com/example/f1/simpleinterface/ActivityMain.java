@@ -14,9 +14,11 @@ public class ActivityMain extends AppCompatActivity {
 
     private TextView numberTV;
     private Button buttonPlus;
+    private Button buttonMinus;
+    private TextView sumTV;
+    private Button buttonOrder;
 
-    // TODO: Define a private var for Button "-"
-    // TODO: Define a private var for TextView "Sum"
+
     // TODO: Define a private var for Button "Order"
 
     @Override
@@ -29,10 +31,10 @@ public class ActivityMain extends AppCompatActivity {
         // Find all elements for interaction:
         numberTV = (TextView) findViewById(R.id.numberTV);      // number of coffee cups
         buttonPlus = (Button) findViewById(R.id.buttonPlus);    // plus button
+        buttonMinus = (Button) findViewById(R.id.buttonMinus);  // minus button
+        sumTV = (TextView) findViewById(R.id.sumTV);            // suma
+        buttonOrder = (Button) findViewById(R.id.buttonOrder);
 
-        // TODO: Find the reference to the Button "-"
-        // TODO: Find the reference to the TextView "Sum"
-        // TODO: Find the reference to the Button "Order"
 
         // Set initial number of cups in the respective TextView to 0:
         numberTV.setText(String.valueOf(numberOfCups));
@@ -47,11 +49,27 @@ public class ActivityMain extends AppCompatActivity {
                 numberTV.setText(String.valueOf(numberOfCups));
             }
         });
+        buttonMinus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (numberOfCups > 0) {
+                    // Decriment the number of cups
+                    numberOfCups -= 1;
+                    // Set new value to the TextView for number of cups:
+                    numberTV.setText(String.valueOf(numberOfCups));
+                }
+            }
+        });
 
-        // TODO: Add listener to the button "-"
+        // Set listeners on buttons order:
+        buttonOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int sum = 2 * numberOfCups;
+                // Set new value to the TextView for sum:
+                sumTV.setText(String.valueOf(sum)+"$");
+            }
+        });
 
-        // TODO: Add listener to the button "Order"
-        // When the button is pressed the sum ("price per cup" times "number of cups")
-        // should appear in the respective TextView
     }
 }
