@@ -6,18 +6,22 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class ActivityMain extends AppCompatActivity {
 
     private int numberOfCups = 0;
+    private int numOfSugar = 0;
 
     private TextView numberTV;
     private Button buttonPlus;
     private Button buttonMinus;
     private TextView sumTV;
     private Button buttonOrder;
-    
+    private SeekBar seekBar;
+    private TextView sugarTV;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,8 @@ public class ActivityMain extends AppCompatActivity {
         buttonMinus = (Button) findViewById(R.id.buttonMinus);  // minus button
         sumTV = (TextView) findViewById(R.id.sumTV);            // suma
         buttonOrder = (Button) findViewById(R.id.buttonOrder);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);         // seekbar
+        sugarTV = (TextView) findViewById(R.id.sugarTV);        // sugar TextView
 
 
         // Set initial number of cups in the respective TextView to 0:
@@ -63,11 +69,32 @@ public class ActivityMain extends AppCompatActivity {
         buttonOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int sum = 2 * numberOfCups;
+                double sum = 2 * numberOfCups + numberOfCups*numOfSugar*0.2;
                 // Set new value to the TextView for sum:
                 sumTV.setText(String.valueOf(sum)+"$");
             }
         });
+
+        // SeekBar listener
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                numOfSugar = i;
+                sugarTV.setText(String.valueOf(i));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
 
     }
 }
