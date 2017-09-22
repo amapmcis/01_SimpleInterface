@@ -17,9 +17,7 @@ public class ActivityMain extends AppCompatActivity {
     private Button buttonMinus;
     private TextView sumTV;
     private Button buttonOrder;
-
-
-    // TODO: Define a private var for Button "Order"
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
